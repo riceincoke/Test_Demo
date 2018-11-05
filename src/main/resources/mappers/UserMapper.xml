@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.user.mappers.UserDao">
+
+  <resultMap id="BaseResultMap" type="com.blog.user.entity.User">
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="userPassword" jdbcType="VARCHAR" property="userpassword" />
+    <result column="adminId" jdbcType="INTEGER" property="adminid" />
+    <result column="userInfo" jdbcType="INTEGER" property="userinfo" />
+
+  </resultMap>
+
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+      SELECT * FROM user WHERE uid = #{uid,jdbcType=INTEGER}
+  </select>
+<!-- parameterType="com.blog.user.entity.User"-->
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" >
+    INSERT INTO user(userName,userPassword,adminId,userInfo) VALUES (#{username},#{userpassword},#{adminid},#{userinfo})
+  </insert>
+
+  <update id="change" parameterType="java.lang.Integer" useGeneratedKeys="true" keyProperty="id">
+    UPDATE user SET userinfo =userinfo+#{num} WHERE uid = 1
+  </update>
+</mapper>

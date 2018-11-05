@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metas :: meta}">
+</head>
+<body>
+<div class="container">
+    <div th:replace="~{fragments/header :: header}"></div>
+    <!--/*@thymesVar id="title" type="com"*/-->
+    <h1 th:text="${title}" class="text-center">title</h1>
+    <h2 class="text-center"><a th:href="@{~/admin/add}">Add User</a></h2>
+    <div class="table-responsive">
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr class="danger">
+            <td>ID</td>
+            <td>NAME</td>
+            <td>PWD</td>
+            <td>CHECK</td>
+            <td>DEL</td>
+        </tr>
+        </thead>
+        <tbody>
+        <!--/*@thymesVar id="adminList" type="templates"*/-->
+        <tr th:if="${adminList.size()} eq 0">
+            <td colspan="5" class="text-center">table is empty</td>
+        </tr>
+        <tr th:each="admins : ${adminList}">
+            <td th:text="${admins.aid}"></td>
+            <td><a th:href="@{'~/admin/'+${admins.aid}}"><span th:text="${admins.adName}"></span></a></td>
+            <td th:text="${admins.adPassword}"></td>
+            <td><a th:href="@{'~/admin/notify/'+${admins.aid}}">notify</a></td>
+            <td><a th:href="@{'~/admin/del/'+${admins.aid}}">del</a></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    <!--/*@thymesVar id="msg" type="com"*/-->
+    <h3 th:text="${msg}"></h3>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</div>
+</body>
+</html>

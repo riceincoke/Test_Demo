@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleeaf/layout">
+<head th:replace="~{fragments/metas :: meta}">
+</head>
+<body>
+<div class="container">
+    <div th:replace="~{fragments/header :: header}"></div>
+    <h1 th:text="${title}" class="text-center">title</h1>
+    <div th:object="${admin}" class="text-center">
+        <p class="text-primary" style="font-size: 14px">
+        ID: <span th:text="*{aid}"></span><br>
+        NAME:<span th:text="*{adName}"></span><br>
+        PASSWORD:<span th:text="*{adPassword}"></span><br>
+        </p>
+    </div>
+        <div th:replace="~{fragments/footer :: footer}"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metas :: meta}">
+</head>
+<body>
+<div class="container">
+    <div th:replace="~{fragments/header :: header}"></div>
+    <h1 class="text-center" th:text="${title}">title</h1>
+
+    <div class="container">
+    <form class="form-horizontal" role="form" th:action="@{~/admin/save}" method="post" th:object="${admin}">
+        <input type="hidden" class="form-control" id="id" name="aid" th:value="*{aid}">
+        <div class="form-group">
+            <label for="id" class="col-sm-2 control-label">ID:</label>
+            <div class="col-sm-1">
+                <!--th:text="*{aid}"]]-->
+                <input type="text" class="form-control" id="id" th:value="*{aid}" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="firstname" class="col-sm-2 control-label">NAME:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="firstname" name="adName" th:value="*{adName}"
+                       placeholder="please input name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname" class="col-sm-2 control-label">PASSWORD:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="lastname" name="adPassword" th:value="*{adPassword}"
+                       placeholder="please input pwd">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-3">
+                <button type="submit" class="btn btn-info">OK</button>
+                <button type="reset" class="btn btn-warning">reset</button>
+            </div>
+        </div>
+    </form>
+    </div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</div>
+</body>
+</html>
